@@ -3,15 +3,23 @@
     height: 100vh;
 
     .login-container {
-        width: 400px;
-        height: 100%;
+        width: 300px;
+        height: 450px;
+        position: absolute;
         margin: 0 auto;
-        border:  1px solid red;
+        border: 1px solid red;
         border-radius: 10px;
         background-color: white;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
         
         .login-content {
             padding: 10px;
+
+
 
             .text-login {
                 text-align: center;
@@ -22,6 +30,16 @@
 
             .login-input {
                 margin: 7px 0;
+
+                .custom-input-password {
+                    position: relative;
+                    i {
+                        position: absolute;
+                        right: 5px;
+                        top: 10px;
+                        cursor: pointer;
+                    }
+                }
             }
 
             .btn-login {
@@ -38,6 +56,38 @@
 
             .forgot-password {
                 font-size: 14px;
+            }
+
+            .social-login {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+
+                i {
+                    margin: auto 3px;
+                    color: white;
+                }
+                .google {
+                    font-size: 30px;
+                    background: #a94242;
+                    border-radius: 50px;
+                    height: 50px;
+                    width: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .facebook {
+                font-size: 30px;
+                background: #307aff;
+                border-radius: 50px;
+                height: 50px;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         
         }
