@@ -14,6 +14,7 @@ class Login extends Component {
             username: '',
             password: '',
             isShowPassword: false,
+            errMessage:''
         }
     }
 
@@ -40,12 +41,32 @@ class Login extends Component {
     }
 
     handleLogin = async () => {
-        console.log('username: ', this.state.username, 'password: ', this.state.password);
-        console.log('all state: ', this.state);
+        this.setState({
+            errMessage:''
+        })
         try {
-            await userService.handleLoginApi(this.state.username, this.state.password);
+            let data = await userService.handleLoginApi(this.state.username, this.state.password);
+            console.log('hoidanit ',data);
+            if (data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.errMessage
+                })
+            }
+            if (data && data.errCode == 0) {
+                
+                this.props.actions.userLoginSuccess(data.user);
+                console.log('login success');
+            }
         } catch (error) {
-            console.log(error)
+            if (error.response) {
+                if (error.response.data) {
+                    this.setState({
+                    errMessage: error.response.data.message
+                    })
+                }
+            }
+            // console.log(error);
+            console.log('hoidanit',error.response);
         }
     }
     render() {
@@ -72,6 +93,12 @@ class Login extends Component {
                             </div>
                             
                         </div>
+
+                        <div className='col-12' style={{color: 'red'}}> 
+                            {this.state.errMessage}
+                        </div>
+
+
                         <div className='col-12' >
                             <button className='btn-login' onClick={() => {this.handleLogin()}}>Login</button>
                         </div>
@@ -102,8 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
