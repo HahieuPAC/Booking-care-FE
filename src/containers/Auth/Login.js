@@ -5,7 +5,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
-import userService from '../../services/userService';
+import userService from '../../services/userService'; 
 
 class Login extends Component {
     constructor(props) {
@@ -46,7 +46,6 @@ class Login extends Component {
         })
         try {
             let data = await userService.handleLoginApi(this.state.username, this.state.password);
-            console.log('hoidanit ',data);
             if (data && data.errCode !== 0) {
                 this.setState({
                     errMessage: data.errMessage
@@ -54,7 +53,7 @@ class Login extends Component {
             }
             if (data && data.errCode == 0) {
                 
-                this.props.actions.userLoginSuccess(data.user);
+                this.props.userLoginSuccess(data.user);
                 console.log('login success');
             }
         } catch (error) {
