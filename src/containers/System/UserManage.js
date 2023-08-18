@@ -27,12 +27,27 @@ class UserManage extends Component {
     }
 
 
+    handleAddNewUser = () => {
+        alert('click me');
+
+    } 
+
+    /** life cycle
+     * run component:
+     * 1. run constructor -> init state
+     * 2. did mount (set state) mount = born, die == unmount
+     * 3. render
+     */
+
+
     render() {
-        console.log('>>> check render ', this.state)
         let arrUsers = this.state.arrUsers;
         return (
             <div className="users-container">
                 <div className='title text-center'> manage users </div>
+                <div className='mx-1'>
+                    <button className='btn- btn-primary px-3' onClick={this.handleAddNewUser}><i className="fas fa-plus"></i>Add new user</button>
+                </div>
                 <div className='users-table'>
                     
                     <table id="customers">
@@ -44,7 +59,6 @@ class UserManage extends Component {
                             <th>Actions</th>
                         </tr>
                             {arrUsers && arrUsers.map((item, index) => {
-                                console.log('>>> check map', item, index);
                                 return(
                                     <>
                                         <tr>
