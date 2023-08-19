@@ -3,13 +3,14 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import userService from '../../services/userService';
+import ModalUser from './ModalUser';
 class UserManage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            arrUsers : []   
-
+            arrUsers : [],
+            isOpenModalUser: false   
         }
     }
 
@@ -28,9 +29,17 @@ class UserManage extends Component {
 
 
     handleAddNewUser = () => {
-        alert('click me');
+        this.setState({
+            isOpenModalUser: true,
+        })
+    }
+    
 
-    } 
+
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+    });
 
     /** life cycle
      * run component:
@@ -38,12 +47,15 @@ class UserManage extends Component {
      * 2. did mount (set state) mount = born, die == unmount
      * 3. render
      */
-
-
+}
     render() {
         let arrUsers = this.state.arrUsers;
         return (
             <div className="users-container">
+                <ModalUser
+                    isOpen = {this.state.isOpenModalUser}
+                    toggleFromParent = {this.toggleUserModal}
+                />
                 <div className='title text-center'> manage users </div>
                 <div className='mx-1'>
                     <button className='btn- btn-primary px-3' onClick={this.handleAddNewUser}><i className="fas fa-plus"></i>Add new user</button>
