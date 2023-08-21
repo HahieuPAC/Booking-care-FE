@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { emitter } from '../../utils/emitter';
+import _ from 'lodash';
 
-class ModalUser extends Component {
+class ModalEditUser extends Component {
 
     constructor(props) {
         super(props);
@@ -15,25 +15,20 @@ class ModalUser extends Component {
             lastName: '',
             address: ''
         }
-
-        this.listenToEmitter();
     }
 
-    listenToEmitter() {
-        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
-            //reset state
-            this.setState({
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                address: ''
-            })
-        })
-    } //bus event
-
     componentDidMount() {
-
+        let user = this.props.currentUser;
+        if (user && !_.isEmpty(user)) {
+            this. setState({
+                email: user.email,
+                password: 'hardcode',
+                firstName: user.firstName,
+                lastName: user.lastName,
+                address: user.address
+            })
+        }
+        console.log('didmount edit: ', this.props.currentUser);
     }
 
     toggle = () => {
@@ -81,10 +76,10 @@ class ModalUser extends Component {
             toggle={() =>{this.toggle()}}
             size='lg'
             >
-                <ModalHeader toggle={() =>{this.toggle()}}>Create a new user</ModalHeader>
+                <ModalHeader toggle={() =>{this.toggle()}}>Edit a user</ModalHeader>
                 <ModalBody>
                     <div className='modal-user-body'>
-                        <div className='input-container'>
+                    <div className='input-container'>
                             <label>Email</label>
                             <input 
                             type='email' onChange={(event) => {this.handleOnchangeInput(event, 'email')}}
@@ -141,7 +136,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
 
 
 
