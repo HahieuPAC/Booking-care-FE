@@ -9,6 +9,7 @@ class ModalEditUser extends Component {
     constructor(props) {
         super(props);
         this.state = { 
+            id: '',
             email: '',
             password: '',
             firstName: '',
@@ -21,6 +22,7 @@ class ModalEditUser extends Component {
         let user = this.props.currentUser;
         if (user && !_.isEmpty(user)) {
             this. setState({
+                id: '',
                 email: user.email,
                 password: 'hardcode',
                 firstName: user.firstName,
@@ -28,7 +30,6 @@ class ModalEditUser extends Component {
                 address: user.address
             })
         }
-        console.log('didmount edit: ', this.props.currentUser);
     }
 
     toggle = () => {
@@ -60,11 +61,11 @@ class ModalEditUser extends Component {
         return true;
     }
 
-    handleAddNewUser = () => {
+    handleSaveUser = () => {
         let isValid = this.checkValiDateInput();
         if (isValid == true) {
-            //call API create modal
-            this.props.createNewUser(this.state );
+            //call API edit modal
+            this.props.editUser(this.state );
         }
     }
 
@@ -84,12 +85,14 @@ class ModalEditUser extends Component {
                             <input 
                             type='email' onChange={(event) => {this.handleOnchangeInput(event, 'email')}}
                             value = {this.state.email}
+                            disabled
                             ></input>
                         </div>
                         <div className='input-container'>
                             <label>Password</label>
                             <input type='password' onChange={(event) => {this.handleOnchangeInput(event, 'password')}}
                             value = {this.state.password}
+                            disabled
                             ></input>
                         </div>
                         <div className='input-container'>
@@ -113,8 +116,8 @@ class ModalEditUser extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button className='px-3' color="primary" onClick={() =>{this.handleAddNewUser()}}>
-                        Add new
+                    <Button className='px-3' color="primary" onClick={() =>{this.handleSaveUser()}}>
+                        Save changes
                     </Button>{' '}
                     <Button className='px-3' color="secondary" onClick={() =>{this.toggle()}}>
                         Close

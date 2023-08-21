@@ -89,11 +89,14 @@ class UserManage extends Component {
      */
 
     handleEditUser = async (user) => {
-        console.log('check edit user id', user);
         this.setState({
             isOpenModalEditUser:true,
             userEdit: user
         })
+    }
+
+    doEditUser = async (user) => {
+        let res = await userService.editUserService(user);
     }
 
     handleDeleteUser = async (item) => {
@@ -126,7 +129,7 @@ class UserManage extends Component {
                     isOpen = {this.state.isOpenModalEditUser}
                     toggleFromParent = {this.toggleUserEditModal}
                     currentUser = {this.state.userEdit}
-                    // createNewUser = {this.createNewUser}
+                    editUser = {this.doEditUser}
                 />}
                 
                 <div className='title text-center'> manage users </div>
