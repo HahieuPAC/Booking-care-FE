@@ -96,7 +96,20 @@ class UserManage extends Component {
     }
 
     doEditUser = async (user) => {
-        let res = await userService.editUserService(user);
+        try {
+            let res = await userService.editUserService(user);
+            if (res && res.errCode === 0) {
+                await this.getAllUserFormReact();
+                this.setState({
+                    isOpenModalEditUser:false,
+                })
+            }
+            else {
+                alert(res.errMessage);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     handleDeleteUser = async (item) => {

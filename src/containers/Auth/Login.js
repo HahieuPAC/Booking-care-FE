@@ -64,8 +64,6 @@ class Login extends Component {
                     })
                 }
             }
-            // console.log(error);
-            // console.log('hoidanit',error.response);
         }
     }
     render() {

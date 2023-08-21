@@ -22,7 +22,7 @@ class ModalEditUser extends Component {
         let user = this.props.currentUser;
         if (user && !_.isEmpty(user)) {
             this. setState({
-                id: '',
+                id: user.id,
                 email: user.email,
                 password: 'hardcode',
                 firstName: user.firstName,
@@ -50,7 +50,7 @@ class ModalEditUser extends Component {
 
     checkValiDateInput = () => {
         let isValid = true;
-        let arrInput = ['email', 'password', 'firstName', 'lastName'];
+        let arrInput = ["id",'email', 'password', 'firstName', 'lastName'];
         for (let i = 0; i < arrInput.length; i++) {
             if (!this.state[arrInput[i]]) {
                 isValid = false;
