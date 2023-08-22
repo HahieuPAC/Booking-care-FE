@@ -15,24 +15,24 @@ class HomeHeader extends Component {
                             </div>
                             <div className='center-content'>
                                 <div className='child-content'> 
-                                    <div><b> Chuyen khoa </b></div>
-                                    <div className='sub-title'>Tim bac si theo chuy khoa</div> 
+                                    <div><b>Chuyên khoa</b></div>
+                                    <div className='sub-title'>Tìm bác sĩ theo chuyên khoa</div> 
                                 </div>
                                 <div className='child-content'>
-                                    <div><b>Co so Y te</b></div>
-                                    <div className='sub-title'>cho benh vien phong kham</div>
+                                    <div><b>Cơ sở y tế</b></div>
+                                    <div className='sub-title'>Chọn bệnh viên phòng khám</div>
                                 </div>
                                 <div className='child-content'>
-                                    <div><b> Bac Si </b></div>
-                                    <div className='sub-title'>Chon bac si gioi</div>
+                                    <div><b>bác sĩ</b></div>
+                                    <div className='sub-title'>Chọn bác sĩ giỏi</div>
                                 </div>
                                 <div className='child-content'>
-                                    <div><b>Goi Kham</b></div>
-                                    <div className='sub-title'>Kham suc khoe tong quat</div>
+                                    <div><b>Gói khám</b></div>
+                                    <div className='sub-title'>Khám sức khoẻ tổng quát</div>
                                 </div>
                             </div>
                             <div className='right-content'>
-                                <div className='support'><i className="fas fa-question-circle"></i>Ho tro</div>
+                                <div className='support'><i className="fas fa-question-circle"></i>Hỗ trợ</div>
                                 <div className='flag'>VN</div>
                             </div>
                         </div>
@@ -50,27 +50,27 @@ class HomeHeader extends Component {
                         <div className='options'>
                             <div className='option-child'>
                                 <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='text-child'>Khám chuyên khoa</div>
                             </div>
                             <div className='option-child'>
-                                <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='icon-child'><i className="fas fa-mobile-alt"></i></div>
+                                <div className='text-child'>Khám từ xa</div>
                             </div>
                             <div className='option-child'>
-                                <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='icon-child'><i className="fas fa-flask"></i></div>
+                                <div className='text-child'>Khám tổng quát</div>
                             </div>
                             <div className='option-child'>
-                                <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='icon-child'><i className="fas fa-vials"></i></div>
+                                <div className='text-child'>Xét nghiệm y học</div>
                             </div>
                             <div className='option-child'>
-                                <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='icon-child'><i className="fas fa-user-plus"></i></div>
+                                <div className='text-child'>Sức khoẻ tinh thần</div>
                             </div>
                             <div className='option-child'>
-                                <div className='icon-child'><i className="far fa-hospital"></i></div>
-                                <div className='text-child'>Kham chuyen khoa</div>
+                                <div className='icon-child'><i className="far fa-heart"></i></div>
+                                <div className='text-child'>Khám nha khoa</div>
                             </div>
                         </div>
                     </div>
