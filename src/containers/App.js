@@ -38,7 +38,6 @@ class App extends Component {
     componentDidMount() {
         this.handlePersistorState();
     }
-
     render() {
         return (
             <Fragment>
