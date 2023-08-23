@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
 import { FormattedMessage } from 'react-intl';
+import {LANGUAGES} from "../../utils"
 class HomeHeader extends Component {
 
+    changeLanguage = (language) => {
+        //fire redux event: action
+    }
     render() { 
         return (
             <React.Fragment>
@@ -33,7 +37,8 @@ class HomeHeader extends Component {
                             </div>
                             <div className='right-content'>
                                 <div className='support'><i className="fas fa-question-circle"></i><FormattedMessage id="homeheader.support"/></div>
-                                <div className='flag'>VN</div>
+                                <div className='language-vi'><span onClick={()=>{this.changeLanguage(LANGUAGES.VI)}}>VN</span></div>
+                                <div className='language-en'><span onClick={()=>{this.changeLanguage(LANGUAGES.EN)}}>EN</span></div>
                             </div>
                         </div>
                 </div>
