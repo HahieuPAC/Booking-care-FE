@@ -50,6 +50,51 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            .support {
+                padding-right: 50px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    font-size: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            .language-vi {
+                cursor: pointer;
+                opacity: 0.3;
+
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: orange;
+                    }
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+
+
+            }
+
+            .language-en {
+                margin: 0 10px;
+                cursor: pointer;
+                opacity: 0.3;
+
+                &.active {
+                    opacity: 1;
+                    color: blue;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
         }
     }
 }
@@ -74,7 +119,7 @@
             color: #fff;
             font-size: 32px;
             margin-bottom: 5px;
-            margin-top: 37px;
+            margin-top: 22px;
             text-transform: uppercase;
             text-shadow: 1px 1px 1px #333;
         }
