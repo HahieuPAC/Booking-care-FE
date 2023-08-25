@@ -24,7 +24,7 @@ class HomeHeader extends Component {
                             <div className='left-content'>
                                 <i class="fas fa-bars"></i>
                                 <div className='header-logo'></div>
-                            </div>
+                            </div> 
                             <div className='center-content'>
                                 <div className='child-content'> 
                                     <div><b><FormattedMessage id="homeheader.specialty"/></b></div>
