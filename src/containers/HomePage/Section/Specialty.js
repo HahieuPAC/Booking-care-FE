@@ -21,7 +21,7 @@ class Specialty extends Component {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 1,
+            slidesToShow: 4,
             slidesToScroll: 1,
             arrows: true,
             className: "myCustomCarousel"
