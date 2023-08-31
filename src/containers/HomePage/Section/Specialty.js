@@ -7,14 +7,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-class Specialty extends Component {
+import specialtyImg from "../../../assets/specialty/co-xuong-khop.jpg"
 
-    changeLanguage = (language) => {
-        this.props.changeLanguageAppRedux(language);
-        console.log('check language: ', this.props);
-
-        //fire redux event: action
-    }
+class specialty extends Component {
 
     render() { 
         let settings = {
@@ -22,33 +17,44 @@ class Specialty extends Component {
             infinite: true,
             speed: 500,
             slidesToShow: 4,
-            slidesToScroll: 1,
-            arrows: true,
-            className: "myCustomCarousel"
+            slidesToScroll: 3,
+
         };
         return (
             <div className='section-specialty'>
-                <div className='Specialty-content'>      
-                <Slider {...settings}>
-                    <div className='img-customize'>
-                        <h3>1</h3>
+                <div className='section-container'>      
+                    <div className='section-header'>
+                        <span className='title-section'>Chuyen khoa pho bien</span>
+                        <button className='btn-section'>Xem them</button>
                     </div>
-                    <div className='img-customize'>
-                        <h3>2</h3>
+                    <div className='section-body'>
+                        <Slider {...settings}>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 1</div>
+                            </div>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 2</div>
+                            </div>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 3</div>
+                            </div>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 4</div>
+                            </div>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 5</div>
+                            </div>
+                            <div className='specialty_customize'>
+                                <div className='bg-image'/>
+                                <div>Co xuong khop 6</div>
+                            </div>
+                        </Slider>
                     </div>
-                    <div className='img-customize'>
-                        <h3>3</h3>
-                    </div>
-                    <div className='img-customize'>
-                        <h3>4</h3>
-                    </div>
-                    <div className='img-customize'>
-                        <h3>5</h3>
-                    </div>
-                    <div className='img-customize'>
-                        <h3>6</h3>
-                    </div>
-                </Slider>
                 </div>
             </div>
         );
@@ -69,4 +75,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(specialty);
