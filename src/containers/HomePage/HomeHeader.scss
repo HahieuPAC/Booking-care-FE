@@ -1,6 +1,10 @@
 .home-header-container {
     height: 100%;
     width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2000;
 
     .home-header-content{
         width: 100%; 

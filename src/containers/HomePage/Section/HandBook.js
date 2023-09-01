@@ -1,45 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './MedicalFacility.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
-class MedicalFacility extends Component {
-img_customize
+// Import css files
 
-    render() {
+class HandBook extends Component {
 
+    render() { 
         return (
-            <div className='section-share section-medical-facility'>
+            <div className='section-share section-handbook'>
                 <div className='section-container'>      
                     <div className='section-header'>
-                        <span className='title-section'>Cơ sở y tế nổi bật</span>
+                        <span className='title-section'>Cẩm nang</span>
                         <button className='btn-section'>Xem thêm</button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 1</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 1</div>
                             </div>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 2</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 2</div>
                             </div>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 3</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 3</div>
                             </div>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 4</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 4</div>
                             </div>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 5</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 5</div>
                             </div>
                             <div className='section_customize'>
-                                <div className='bg-image section-medical-facility'/>
-                                <div>Hệ thống y tế Thu Cúc 6</div>
+                                <div className='bg-image section-handbook'/>
+                                <div>Co xuong khop 6</div>
                             </div>
                         </Slider>
                     </div>
@@ -47,18 +46,20 @@ img_customize
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        lang: state.app.language,
+        //inject
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default connect(mapStateToProps, mapDispatchToProps)(HandBook);
