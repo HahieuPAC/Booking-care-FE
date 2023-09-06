@@ -1,33 +1,38 @@
 import actionTypes from '../actions/actionTypes';
 
+const initContentOfConfirmModal = {
+    isOpen: false,
+    messageId: "",
+    handleFunc: null,
+    dataFunc: null
+}
+
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
+    genders: [],
+    role: [],
+    position: [],
+    
 }
 
-const appReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
+        case actionTypes.FETCH_GENDER_START: 
             return {
-                ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
+                ...state
             }
-        case actionTypes.ADMIN_LOGIN_FAIL:
+        case actionTypes.FETCH_GENDER_SUCCESS: 
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...state
             }
-        case actionTypes.PROCESS_LOGOUT:
+        case actionTypes.FETCH_GENDER_FAILED: 
             return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
+                ...state
             }
+    
+    
         default:
-            return state;
-    }
+                return state;
+        }
 }
 
-export default appReducer;
+export default adminReducer;

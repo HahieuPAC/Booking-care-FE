@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import userService from '../../../services/userService';
+import { LANGUAGES } from '../../../utils';
 class UserRedux extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            genderArr: []
 
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        try {
+            let res = await userService.getAllCodeService("gender");
+            if (res&&res.errCode === 0) {
+                this.setState ({
+                    genderArr: res.data
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
     render() {
+        let genders = this.state.genderArr;
+        let language = this.props.lang;
         return (
             <div className='user-redux-container'>
                 <div className="title" >
@@ -51,8 +66,10 @@ class UserRedux extends Component {
                             <div className='col-3'>
                                 <label><FormattedMessage id="manage-user.gender"/></label>
                                 <select className="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
+                                    {genders&&genders.length > 0 && 
+                                    genders.map((item, index) => {
+                                        return (<option key={index}>{language === LANGUAGES.VI? item.valueVi : item.valueEn}</option>)
+                                    })} 
                                 </select>
                             </div>
                             <div className='col-3'>
@@ -88,6 +105,7 @@ class UserRedux extends Component {
 
 const mapStateToProps = state => {
     return {
+        lang: state.app.language,
     };
 };
 
