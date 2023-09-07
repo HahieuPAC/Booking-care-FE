@@ -9,34 +9,56 @@ const initContentOfConfirmModal = {
 
 const initialState = {
     isLoadingGender: false,
+    isLoadingPosition: false,
+    isLoadingRole: false,
     genders: [],
-    role: [],
-    position: [],
+    roles: [],
+    positions: [],
     
 }
 
 const adminReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_GENDER_START: 
-            let copyStateStart = {...state};
-            copyStateStart.isLoadingGender = true; 
-            console.log('fire fetch gender start: ', action)
+            state.isLoadingGender = true; 
             return {
-                ...copyStateStart
+                ...state
             }
         case actionTypes.FETCH_GENDER_SUCCESS: 
-            let copyState = {...state};
-            copyState.genders = action.data;
-            copyState.isLoadingGender = false; 
+            state.genders = action.data;
+            state.isLoadingGender = false; 
             return {
-                ...copyState
+                ...state
             }
         case actionTypes.FETCH_GENDER_FAILED: 
-        let copyStateFailed = {...state};
-            copyStateFailed.isLoadingGender = false; 
-            copyStateFailed.genders = [];
+            state.isLoadingGender = false; 
+            state.genders = [];
             return {
-                ...copyStateFailed
+                ...state
+            }
+        
+        case actionTypes.FETCH_POSITION_SUCCESS: 
+            state.positions = action.data; 
+            return {
+                ...state
+            }
+
+        case actionTypes.FETCH_POSITION_FAILED: 
+            state.positions = []; 
+            return {
+                ...state
+            }
+
+        case actionTypes.FETCH_ROLE_SUCCESS: 
+            state.roles = action.data; 
+            return {
+                ...state
+            }
+
+        case actionTypes.FETCH_POSITION_FAILED: 
+            state.roles = []; 
+            return {
+                ...state
             }
     
     
