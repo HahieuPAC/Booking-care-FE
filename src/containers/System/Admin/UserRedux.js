@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import userService from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
-import * as actions from "../../../store/actions"
+import * as actions from "../../../store/actions";
+import"./UserRedux.scss";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 class UserRedux extends Component {
 
     constructor(props) {
@@ -11,7 +13,9 @@ class UserRedux extends Component {
         this.state = {
             genderArr: [],
             roleArr: [],
-            positionArr: []
+            positionArr: [],
+            previewImgUrl: '',
+            isOpen: false,
 
         }
     }
@@ -22,16 +26,6 @@ class UserRedux extends Component {
         this.props.getGendersStart();
         this.props.getPositionsStart();
         this.props.geRolesStart();
-        // try {
-        //     let res = await userService.getAllCodeService("gender");
-        //     if (res&&res.errCode === 0) {
-        //         this.setState ({
-        //             genderArr: res.data
-        //         })
-        //     }
-        // } catch (error) {
-        //     console.log(error);
-        // }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -51,6 +45,31 @@ class UserRedux extends Component {
             })
         }
     }
+
+    handleOnchangeImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+        if (file) {
+            let objUrl= URL.createObjectURL(file);
+            console.log(">>> check file 0: ", objUrl);
+            await this.setState({
+                previewImgUrl: objUrl,
+            })
+        }
+        console.log(">>> check previewImgUrl: ", this.state.previewImgUrl);
+        
+    }
+
+    openPreviewImg = () => {
+        if (!this.state.previewImgUrl)
+        {
+            return;
+        }
+        this.setState({
+            isOpen: true,
+        })
+    }
+
     render() {
         let genders = this.state.genderArr;
         let roles = this.state.roleArr;
@@ -58,6 +77,7 @@ class UserRedux extends Component {
         let language = this.props.lang;
         return (
             <div className='user-redux-container'>
+
                 <div className="title" >
                     user redux user "Hieu"
                 </div>
@@ -118,10 +138,17 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3'>
                                 <label><FormattedMessage id="manage-user.image"/></label>
-                                <div>
-                                    <input id="previewImg" type='file' />
-                                    <label htmlFor='previewImg'>Tai anh</label>
-                                    <div className='preview-image'></div>
+                                <div className='preview-img-container'>
+                                    <input onChange={(event) => {
+                                        this.handleOnchangeImage(event)
+                                    }} id="previewImg" type='file' hidden/>
+                                    <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className="fas fa-upload"></i></label>
+                                    <div className='preview-image'style={{ 
+                                        backgroundImage: `url(${this.state.previewImgUrl})`
+                                    }}
+                                    onClick={() => this.openPreviewImg()}>
+
+                                    </div>
                                 </div>
                                 
                                 
@@ -132,8 +159,13 @@ class UserRedux extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.isOpen=== true &&
+                <Lightbox
+                    mainSrc={this.state.previewImgUrl}
+                    onCloseRequest={() => this.setState({ isOpen: false })}
+                />}
+            
             </div>
-
         )
     }
 
