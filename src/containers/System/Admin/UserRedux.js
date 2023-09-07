@@ -114,7 +114,8 @@ class UserRedux extends Component {
 const mapStateToProps = state => {
     return {
         lang: state.app.language,
-        genderRedux: state.admin.genders
+        genderRedux: state.admin.genders,
+        isLoadingGender: state.admin.isLoadingGender,
     };
 };
 
