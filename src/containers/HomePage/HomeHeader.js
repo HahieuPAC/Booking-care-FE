@@ -8,7 +8,6 @@ class HomeHeader extends Component {
 
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
-        console.log('check language: ', this.props);
 
         //fire redux event: action
     }

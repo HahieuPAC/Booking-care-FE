@@ -19,6 +19,8 @@ const deleteUserService = (userId) => {
 }
 
 const editUserService = (data) => {
+    console.log(" check data editUserService: ", data);
+    console.log(">> check : ", data.id ,data.roleId,data.positionId ,data.gender)
     return axios.put('/api/edit-user', data)
 }
 

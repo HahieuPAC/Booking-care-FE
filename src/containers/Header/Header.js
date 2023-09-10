@@ -11,7 +11,6 @@ import { FormattedMessage } from 'react-intl';
 class Header extends Component {
 
     handleChangeLanguage = (language) => {
-        console.log('>> check language: ', language);
         this.props.changeLanguageAppRedux(language);
     }
 

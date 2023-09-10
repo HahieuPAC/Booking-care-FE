@@ -2,21 +2,45 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
-import userService from '../../services/userService';
-import ModalUser from './ModalUser';
-import ModalEditUser from './ModalEditUser';
-import { emitter } from '../../utils/emitter';
+import userService from '../../../services/userService';
+import ModalUser from '../../System/ModalUser';
+import ModalEditUser from '../../System/ModalEditUser';
+import { emitter } from '../../../utils/emitter';
+import * as actions from "../../../store/actions";
 class TableManageUser extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            userRedux: [],
         }
     }
 
+    componentDidMount() {
+        this.props.fetchUserRedux();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.listUsers != this.props.listUsers) {
+            this.setState({
+                userRedux: this.props.listUsers
+            })
+        }
+    }
+
+    handleDeleteUser = (user) => {
+        this.props.deleteAUserRedux(user.id);
+    }
+
+    handleEditUser = (user) => {
+        console.log(">> check eedit user: ", user);
+        this.props.handleEditUserFromParent(user);
+    }
+
     render() {
+        let arrUsers = this.state.userRedux;
         return (
-                    <table>
+                    <table id = "TableManageUser">
                         <tbody>
                             <tr>
                                 <th>Email</th>
@@ -25,12 +49,25 @@ class TableManageUser extends Component {
                                 <th>Address</th>
                                 <th>Actions</th>
                             </tr>
-                            <tr>
-                                <td>{'item.emai'l}</td>
-                                <td>{'item.firstName'}</td>
-                                <td>{'item.lastName'}</td>
-                                <td>{'item.address'}</td>
-                            </tr>
+                            {arrUsers && arrUsers.length > 0 && 
+                            arrUsers.map((item, index) => {
+                                return(
+                                    <tr key = {index}>
+                                        <td>{item.email}</td>
+                                        <td>{item.firstName}</td>
+                                        <td>{item.lastName}</td>
+                                        <td>{item.address}</td>
+                                        <td>
+                                            <button className='btn-edit'><i class="fas fa-edit"
+                                            onClick={()=>{this.handleEditUser(item)}}
+                                            ></i></button>
+                                            <button className='btn-delete'
+                                            onClick={()=> this.handleDeleteUser(item)}
+                                            ><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
         );
@@ -40,11 +77,14 @@ class TableManageUser extends Component {
 
 const mapStateToProps = state => {
     return {
+        listUsers: state.admin.users,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchUserRedux: () => dispatch(actions.fetchAllUserStart()),
+        deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
     };
 };
 
