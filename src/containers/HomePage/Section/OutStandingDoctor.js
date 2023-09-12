@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
+import * as actions from "../../../store/actions";
 class OutStandingDoctor extends Component {
-img_customize
+
+    componentDidMount() {
+        this.props.loadTopDoctors();
+    }
 
     render() {
 
@@ -105,6 +109,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
     };
 };
 
