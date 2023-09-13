@@ -10,7 +10,7 @@ class OutStandingDoctor extends Component {
     }
 
     render() {
-
+        console.log(">>> check topDoctorsRedux: ", this.props.topDoctorsRedux);
         return (
             <div className='section-share section-outstanding-doctor'>
                 <div className='section-container'>      
@@ -103,7 +103,8 @@ class OutStandingDoctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        topDoctorsRedux: state.admin.topDoctor,
     };
 };
 

@@ -32,6 +32,7 @@ class UserRedux extends Component {
 
             action: CRUD_ACTIONS.CREATE,
         }
+        
     }
 
     async componentDidMount() {
