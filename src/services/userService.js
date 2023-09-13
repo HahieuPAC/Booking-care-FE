@@ -29,7 +29,7 @@ const getAllCodeService = (data) => {
     return axios.get(`/api/allcode?type=${data}`);
 }
 const getTopDoctorHomeService = (limit) => {
-    return axios.get(`po`);
+    return axios.get(`/api/top-doctor-home?limit=${limit}`);
 }
 
 export default { handleLoginApi, 

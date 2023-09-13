@@ -4,13 +4,27 @@ import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 class OutStandingDoctor extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            arrDoctors: [],
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.topDoctorsRedux != this.props.topDoctorsRedux) {
+            this.setState({
+                arrDoctors: this.props.topDoctorsRedux
+            })
+        }
+    }
 
     componentDidMount() {
         this.props.loadTopDoctors();
     }
 
     render() {
-        console.log(">>> check topDoctorsRedux: ", this.props.topDoctorsRedux);
+        let arrDoctors = this.state.arrDoctors
         return (
             <div className='section-share section-outstanding-doctor'>
                 <div className='section-container'>      
@@ -20,78 +34,22 @@ class OutStandingDoctor extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
+                            {arrDoctors && arrDoctors.length > 0 
+                            && arrDoctors.map((item, index) => {
+                                return (
+                                    <div className='section_customize'>
+                                        <div className='customize-border'>
+                                            <div className='outer-bag'>
+                                                <div className='bg-image section-outstanding-doctor'/>
+                                            </div>
+                                            <div className='Position text-center'>
+                                                <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
+                                                <div>Cơ xương khớp</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
-                                    </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
-                                    </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
-                                    </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
-                                    </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section_customize'>
-                                <div className='customize-border'>
-                                    <div className='outer-bag'>
-                                        <div className='bg-image section-outstanding-doctor'/>
-                                    </div>
-                                    
-                                    <div className='Position text-center'>
-                                        <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
-                                        <div>Cơ xương khớp</div>
-                                    </div>
-                                </div>
-                            </div>
+                                )
+                            })}
                         </Slider>
                     </div>
                 </div>
