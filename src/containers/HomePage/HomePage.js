@@ -12,15 +12,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class HomePage extends Component {
+    // handleAfterChange = (index, dontAnimate => {
+    //     console.log(">>> log event, slick, currentSlide: ", currentSlide)
+    // }
 
 
     render() {
         let settings = {
             dots: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 3,
+            slickGoTo: this.handleAfterChange
         };
 
 

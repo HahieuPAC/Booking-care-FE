@@ -63,5 +63,10 @@
         "image": "Ảnh đại diện",
         "save" : "Lưu",
         "edit": "Lưu thay đổi"
+    },
+
+    "homepage": {
+        "outstanding-doctor": "Bac si noi bat tuan qua",
+        "more-info": "Them thong tin"
     }
 }
