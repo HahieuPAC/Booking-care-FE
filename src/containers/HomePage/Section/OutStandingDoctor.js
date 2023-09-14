@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES, CRUD_ACTIONS } from '../../../utils';
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
+import CommonUtils from '../../../utils/CommonUtils';
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +26,8 @@ class OutStandingDoctor extends Component {
     }
 
     render() {
-        let arrDoctors = this.state.arrDoctors
+        let arrDoctors = this.state.arrDoctors;
+        let language = this.props.lang;
         return (
             <div className='section-share section-outstanding-doctor'>
                 <div className='section-container'>      
@@ -36,14 +39,23 @@ class OutStandingDoctor extends Component {
                         <Slider {...this.props.settings}>
                             {arrDoctors && arrDoctors.length > 0 
                             && arrDoctors.map((item, index) => {
+                                let imageBase64 = "";
+                                if (item.image) {
+                                    imageBase64 = new Buffer(item.image, 'base64').toString('binary');
+                                    console.log(">> check imageBase64: ", item.image);
+                                }
+                                let nameVI = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                                let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                 return (
                                     <div className='section_customize'>
                                         <div className='customize-border'>
                                             <div className='outer-bag'>
-                                                <div className='bg-image section-outstanding-doctor'/>
+                                                <div className='bg-image section-outstanding-doctor' style={{ 
+                                        backgroundImage: `url(${imageBase64})`
+                                    }}/>
                                             </div>
                                             <div className='Position text-center'>
-                                                <div>Giáo sư, tiến sĩ Hà Trung Hiếu</div>
+                                                <div>{language === LANGUAGES.VI ? nameVI : nameEn}</div>
                                                 <div>Cơ xương khớp</div>
                                             </div>
                                         </div>
@@ -62,6 +74,7 @@ class OutStandingDoctor extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
+        lang: state.app.language,
         topDoctorsRedux: state.admin.topDoctor,
     };
 };
