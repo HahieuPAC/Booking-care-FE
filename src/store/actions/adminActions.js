@@ -239,3 +239,27 @@ export const fetchTopDoctor = () => {
         }
     }
 }
+
+export const fetchAllDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let doctors = await userService.getAllDoctor();
+            if (doctors && doctors.errCode === 0) {
+                dispatch({
+                    type:   actionTypes.FETCH_All_DOCTOR_SUCCESS,
+                    dataAllDoctors: doctors.data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_All_DOCTOR_FAILED,
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            dispatch({
+                type: actionTypes.FETCH_All_DOCTOR_FAILED,
+            })
+        }
+    }
+}

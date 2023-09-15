@@ -32,10 +32,15 @@ const getTopDoctorHomeService = (limit) => {
     return axios.get(`/api/top-doctor-home?limit=${limit}`);
 }
 
+const getAllDoctor  = () => {
+    return axios.get(`/api/get-all-doctor`);
+}
+
 export default { handleLoginApi, 
     getAllUser,
     createNewUserService,
     deleteUserService,
     editUserService,
     getAllCodeService,
-    getTopDoctorHomeService}
+    getTopDoctorHomeService,
+    getAllDoctor}
