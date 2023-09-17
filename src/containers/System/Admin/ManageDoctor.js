@@ -81,7 +81,13 @@ class ManageDoctor extends Component {
     }
     
     handSaveContentMarkdown = () => {
-        console.log(">> check state: ", this.state)
+        
+        this.props.saveDetailDoctor({
+            contentHTML: this.state.contentHTML,
+            contentMarkdown: this.state.contentMarkdown,
+            description: this.state.description,
+            doctorId: this.state.selectedOption.value
+        })
     }
 
     handleChange = (selectedOption) => {
@@ -117,7 +123,7 @@ class ManageDoctor extends Component {
                     </div>
                     <div className='content-right'>
                         <label>
-                                Thong tin gioi thieu
+                                Thông tin giới thiệu
                             </label>
                         <textarea 
                         rows="4" 
@@ -138,7 +144,7 @@ class ManageDoctor extends Component {
                 </div>
                 <button className='save-content-doctor'
                 onClick={()=> this.handSaveContentMarkdown()}>
-                    Luu thong tin
+                    Lưu thông tin
                 </button>
             </div>
         );
@@ -155,6 +161,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getAllDoctorRedux: () => dispatch(actions.fetchAllDoctor()),
+        saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
     };
 };
 

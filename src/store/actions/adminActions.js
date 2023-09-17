@@ -263,3 +263,32 @@ export const fetchAllDoctor = () => {
         }
     }
 }
+
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.saveDetailDoctorService(data);
+            console.log(">> check log res: ", res);
+            if (res && res.errCode === 0) {
+                // Xử lý thành công
+                toast.success("Save detail doctor success");
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+                })
+            } else {
+                // Xử lý lỗi
+                toast.error("Save detail doctor error");
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+                })
+            }
+            
+        } catch (error) {
+            toast.success("Save detail doctor error");
+            console.log(error);
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+            })
+        }
+    }
+}
