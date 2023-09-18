@@ -5,7 +5,7 @@ import { LANGUAGES, CRUD_ACTIONS } from '../../../utils';
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import CommonUtils from '../../../utils/CommonUtils';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom';
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ class OutStandingDoctor extends Component {
 
     handleViewDetailDoctor = (doctor) => {
         console.log('hoidanit chaneil view infor: ', doctor);
-        this.props.history.push(`/user/${doctor.id}`)
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
 
     render() {
