@@ -5,6 +5,7 @@ import { LANGUAGES, CRUD_ACTIONS } from '../../../utils';
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import CommonUtils from '../../../utils/CommonUtils';
+import { withRouter } from 'react-router';
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,11 @@ class OutStandingDoctor extends Component {
 
     componentDidMount() {
         this.props.loadTopDoctors();
+    }
+
+    handleViewDetailDoctor = (doctor) => {
+        console.log('hoidanit chaneil view infor: ', doctor);
+        this.props.history.push(`/user/${doctor.id}`)
     }
 
     render() {
@@ -49,7 +55,7 @@ class OutStandingDoctor extends Component {
                                 let nameVI = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                 return (
-                                    <div className='section_customize'>
+                                    <div className='section_customize' key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                                         <div className='customize-border'>
                                             <div className='outer-bag'>
                                                 <div className='bg-image section-outstanding-doctor' style={{ 
@@ -87,4 +93,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));
