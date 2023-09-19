@@ -10,13 +10,28 @@
     }
 
     .save-content-doctor {
-            border-radius: 3px;
+        border-radius: 3px;
         margin: 20px 0 30px 0;
         border: none;
         outline: none;
         padding: 5px;
         background: orange;
         cursor: pointer;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .create-content-doctor {
+        border-radius: 3px;
+        margin: 20px 0 30px 0;
+        border: none;
+        outline: none;
+        padding: 5px;
+        background: blue;
+        cursor: pointer;
+        color: white;
         
         &:hover {
             opacity: 0.8;

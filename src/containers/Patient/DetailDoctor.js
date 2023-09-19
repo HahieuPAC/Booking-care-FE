@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeHeader from '../HomePage/HomeHeader';
 import './DetailDoctor.scss';
 import userService from '../../services/userService';
+import { LANGUAGES } from '../../utils';
 
 
 class DetailDoctor extends Component {
@@ -32,30 +33,43 @@ class DetailDoctor extends Component {
 
     render() {
         console.log("state: ", this.state);
-        let {detailDoctor} = this.state
+        let {detailDoctor} = this.state;
+        let language = this.props.lang;
+        let nameVI = "", nameEn = ""; 
+        if (detailDoctor && detailDoctor.positionData) {
+        nameVI = `${detailDoctor.positionData.valueVi}: ${detailDoctor.lastName} ${detailDoctor.firstName}`;
+        nameEn = `${detailDoctor.positionData.valueEn}: ${detailDoctor.firstName} ${detailDoctor.lastName}`;
+        }
         return (    
             <>
                 <HomeHeader isShowBanner = {false}/>
                 <div className='doctor-detail-container'>
                     <div className='intro-doctor'>
                         <div className='content-left' style={{ 
-                                        backgroundImage: `url(${detailDoctor.image})`
+                                        backgroundImage: `url(${detailDoctor.image? detailDoctor.image : ""})`
                                     }}>
                         </div>
                         <div className='content-right'>
                             <div className='up'>
-                                PGS LE van A
-                            </div>
+                                {language === LANGUAGES.VI ? nameVI : nameEn}
+                            </div>  
                             <div className='down'>
-                                haha
+                                {detailDoctor.Markdown && detailDoctor.Markdown.description 
+                                && <span>
+                                    {detailDoctor.Markdown.description}
+                                    </span>} 
                             </div>
                         </div>
                     </div>
                     <div className='schedule-doctor'>
 
                     </div>
-                    <div className='detail-infor-doctor'>
-                        //
+                    <div className='detail-info-doctor'>
+                        {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML
+                        && 
+                        <div dangerouslySetInnerHTML={{__html: detailDoctor.Markdown.contentHTML}}>
+
+                        </div>}
                     </div>
                     <div className='comment-doctor'>
 
@@ -68,6 +82,7 @@ class DetailDoctor extends Component {
 
 const mapStateToProps = state => {
     return {
+        lang: state.app.language,
 
     };
 };
