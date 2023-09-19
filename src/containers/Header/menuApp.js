@@ -21,16 +21,10 @@ export const adminMenu = [
         //     {
         //         name: 'menu.admin.manage-admin', link: '/system/user-admin'
         //     },
+            {
+                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
+            },
 
-        { //quản lí ke hoach kham benh bac si
-            name: 'menu.doctor.manage-schedule', 
-            menus: [
-                {
-                    name: 'menu.doctor.schedule', link: '/system/user-manage'
-                },
-            ]
-    
-        },
         ]
 
     },
@@ -67,13 +61,12 @@ export const adminMenu = [
 ];
 
 export const doctorMenu = [
-    { //quản lí ke hoach kham benh bac si
-        name: 'menu.doctor.manage-schedule', 
+    { //quản lí người dùng
+        name: 'menu.admin.manage-user', 
         menus: [
             {
-                name: 'menu.doctor.schedule', link: '/system/user-manage'
+                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
             },
         ]
-
-    },
-];
+    }
+]

@@ -7,25 +7,48 @@ import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 import {LANGUAGES} from "../../utils/";
 import { FormattedMessage } from 'react-intl';
+import { USER_ROLE } from '../../utils/';
+import _ from 'lodash';
 // import { changeLanguageApp } from '../../store/actions';
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuApp: [],
+        }
+    }
 
     handleChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
     }
 
     componentDidMount() {
-        
+        let {userInfo} = this.props;
+        let menu = [];
+        if (userInfo && !_.isEmpty(userInfo)) {
+            let role = userInfo.roleId;
+            if(role === USER_ROLE.ADMIN) {
+                menu = adminMenu
+            }
+            else if (role === USER_ROLE.DOCTOR) {
+                menu = doctorMenu
+            }
+        }
+        this.setState({
+            menuApp: menu
+        })
     }
 
     render() {
         const { processLogout, lang, userInfo, } = this.props;
+        console.log("menu app: ", this.props.userInfo.roleId)
 
         return (
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menuApp} />
                 </div>
 
                 <div className='languages'>
