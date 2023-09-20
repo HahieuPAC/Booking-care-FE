@@ -6,6 +6,7 @@ import Select from 'react-select';
 import * as action from "../../../store/actions";
 import { LANGUAGES,} from '../../../utils';
 import userService from '../../../services/userService';
+import DatePicker from '../../../components/Input/DatePicker';
 
 class ManageSchedule extends Component {
 
@@ -14,6 +15,7 @@ class ManageSchedule extends Component {
         this.state = {
             listDoctors: [],
             selectedDoctor: {},
+            currentDate: "",
         }
     }
 
@@ -53,11 +55,11 @@ class ManageSchedule extends Component {
         return result;
     }
 
-    handleChangeSelect = async (selectedOption) => {
-        this.setState({ selectedOption }
-            // ,() => console.log(`Option selected:`, this.state.selectedOption)
+    handleChangeSelect = async (selectedDoctor) => {
+        this.setState({ selectedDoctor }
+            // ,() => console.log(`Option selected:`, this.state.selectedDoctor)
         );
-        let response = await userService.getDetailInfoDoctor(selectedOption.value)
+        let response = await userService.getDetailInfoDoctor(selectedDoctor.value)
         if (response && response.errCode === 0 && response.data && response.data.Markdown) {
             let markdown = response.data.Markdown;
             this.setState({
@@ -77,6 +79,10 @@ class ManageSchedule extends Component {
         }
         console.log(">>> check State: ", this.state);
     };
+
+    handleOnChargeDatePicker = () => {
+
+    }
 
     render() {
         console.log(">>> check state manage schedule: ",this.state);
@@ -99,7 +105,10 @@ class ManageSchedule extends Component {
                         </div>
                         <div className='col-6'> 
                             <label>Chọn ngày</label>
-                            <input className='form-control'/>
+                            <DatePicker
+                            className="form-control"
+                                onChange = {this.handleOnChargeDatePicker}
+                            />
                         </div>
                         <div className='col-12 pick-hour-container'>
 
