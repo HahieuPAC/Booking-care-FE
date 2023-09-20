@@ -72,5 +72,9 @@
     "homepage": {
         "outstanding-doctor": "Bac si noi bat tuan qua",
         "more-info": "Them thong tin"
+    },
+
+    "manage-schedule": {
+        "title": "Quản lý kế hoạch khám bệnh của bác sĩ"
     }
 }

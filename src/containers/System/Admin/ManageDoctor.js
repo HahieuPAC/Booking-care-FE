@@ -145,7 +145,7 @@ class ManageDoctor extends Component {
                             Chon bac si
                         </label>
                         <Select
-                            className="form -control"
+                            className="form-control"
                             value={this.state.selectedOption}
                             onChange={this.handleChangeSelect}
                             options={this.state.listDoctors}

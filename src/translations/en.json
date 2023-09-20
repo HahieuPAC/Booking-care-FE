@@ -64,5 +64,9 @@
     "homepage": {
         "outstanding-doctor": "Outstanding doctors in week",
         "more-info": "More info"
+    },
+
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan"
     }
 }
