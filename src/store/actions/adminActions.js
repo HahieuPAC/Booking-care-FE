@@ -292,3 +292,27 @@ export const saveDetailDoctor = (data) => {
         }
     }
 }
+
+export const fetchAllScheduleTime = (type) => {
+    return async (dispatch, getState) => {
+        try {
+            let time = await userService.getAllCodeService("TIME");
+            if (time && time.errCode === 0) {
+                dispatch({
+                    type:   actionTypes.FETCH_AllCODE_SCHEDULE_TIME_SUCCESS,
+                    dataTime: time.data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_AllCODE_SCHEDULE_TIME_FAILED,
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            dispatch({
+                type: actionTypes.FETCH_AllCODE_SCHEDULE_TIME_FAILED,
+            })
+        }
+    }
+}

@@ -7,20 +7,25 @@ import * as action from "../../../store/actions";
 import { LANGUAGES,} from '../../../utils';
 import userService from '../../../services/userService';
 import DatePicker from '../../../components/Input/DatePicker';
+import moment from 'moment';
+import { Button } from 'bootstrap';
 
 class ManageSchedule extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             listDoctors: [],
             selectedDoctor: {},
-            currentDate: "",
+            currentDate: new Date(),    
+            rangeTime : [],
         }
     }
 
     componentDidMount() {
         this.props.getAllDoctorRedux();
+        this.props.fetchAllScheduleTime();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -30,12 +35,11 @@ class ManageSchedule extends Component {
                 listDoctors: dataSelect
             })
         }
-        // if (prevProps.lang !== this.props.lang) {
-        //     let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
-        //     this.setState({
-        //         listDoctors: dataSelect
-        //     })
-        // }
+        if (prevProps.allScheduleTime !== this.props.allScheduleTime){
+            this.setState({
+                rangeTime: this.props.allScheduleTime
+            })
+        }
     }
 
     buildDataInputSelect = (inputData) => {
@@ -80,12 +84,15 @@ class ManageSchedule extends Component {
         console.log(">>> check State: ", this.state);
     };
 
-    handleOnChargeDatePicker = () => {
-
+    handleOnChargeDatePicker = (date) => {
+        this.setState({
+            currentDate: date
+        })
     }
 
     render() {
-        console.log(">>> check state manage schedule: ",this.state);
+        console.log(">>> check rangeTime : ",this.state.rangeTime);
+        let rangeTime= this.state.rangeTime;
         return (
             <div className='manage-schedule-container'>
                 <div className='m-s-title'>
@@ -106,12 +113,20 @@ class ManageSchedule extends Component {
                         <div className='col-6'> 
                             <label>Chọn ngày</label>
                             <DatePicker
-                            className="form-control"
+                                className="form-control"
                                 onChange = {this.handleOnChargeDatePicker}
+                                value={this.state.currentDate[0]}
+                                minDate = {new Date()}
                             />
                         </div>
                         <div className='col-12 pick-hour-container'>
-
+                            {rangeTime && rangeTime.length >0 &&
+                                rangeTime.map((item, index) => {
+                                    return (
+                                        <Button className="btn" key = {index}>{item.valueVi}</Button>
+                                    )
+                                })
+                            }
                         </div>
                         <button className='btn btn-primary'>Lưu thông tin</button>
                     </div>
@@ -126,12 +141,14 @@ const mapStateToProps = state => {
         lang: state.app.language,
         isLoggedIn: state.user.isLoggedIn,
         allDoctors: state.admin.allDoctors,
+        allScheduleTime: state.admin.allScheduleTime,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getAllDoctorRedux: () => dispatch(action.fetchAllDoctor()),
+        fetchAllScheduleTime: () => dispatch(action.fetchAllScheduleTime())
     };
 };
 
