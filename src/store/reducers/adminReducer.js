@@ -99,6 +99,18 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+
+        case actionTypes.FETCH_All_SCHEDULE_TIME_SUCCESS: 
+            state.allTimes = action.dataAllTimes;
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_All_SCHEDULE_TIME_FAILED: 
+            state.allTimes = []; 
+            return {
+                ...state
+            }
     
         default:
                 return state;

@@ -66,6 +66,14 @@ class Login extends Component {
             }
         }
     }
+
+    handleKeyDown = (event) => {
+        console.log("check keydown: ", event.key)
+        if (event.key === 'Enter' || event.key === 13) {
+            this.handleLogin();
+        }
+    }
+
     render() {
         //JSX
         return (
@@ -75,14 +83,26 @@ class Login extends Component {
                         <div className='col-12 text-center text-login'>Login</div>
                         <div className='col-12 form-group login-input'>
                             <label>User Name:</label>
-                            <input type='text' className='form-control' placeholder="Enter your username"
-                            value={this.state.username}
-                            onChange={(event) => this.handleOnChangeInputUsername(event)}></input>
+                            <input 
+                                type='text' c
+                                lassName='form-control' 
+                                placeholder="Enter your username"
+                                value={this.state.username}
+                                onChange={(event) => this.handleOnChangeInputUsername(event)}
+                            >   
+                            </input> 
                         </div>
                         <div className='col-12 form-group login-input'>
                             <label>Pass word:</label>
                             <div className='custom-input-password'>
-                                <input type={this.state.isShowPassword? 'text' : 'password'} className='form-control' placeholder="Enter your password" value={this.state.password}onChange={(event) => this.handleOnChangeInputPassword(event)}></input>
+                                <input 
+                                    type={this.state.isShowPassword? 'text' : 'password'} 
+                                    className='form-control' placeholder="Enter your password" 
+                                    value={this.state.password}
+                                    onChange={(event) => this.handleOnChangeInputPassword(event)}
+                                    onKeyDown={(event) => this.handleKeyDown(event)}
+                                >
+                                </input>
                                 
                                 <span onClick={() => {this.handleShowHidePassword()}}>
                                 <i class= {this.state.isShowPassword? 'far fa-eye' : 'far fa-eye-slash'}></i>

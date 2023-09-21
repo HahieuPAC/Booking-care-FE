@@ -75,6 +75,9 @@
     },
 
     "manage-schedule": {
-        "title": "Quản lý kế hoạch khám bệnh của bác sĩ"
+        "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
+        "choose-doctor": "Chon bac si",
+        "choose-date": "Chon ngay",
+        "save": "Luu thong tin"
     }
 }

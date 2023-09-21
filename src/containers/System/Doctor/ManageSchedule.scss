@@ -9,8 +9,26 @@
     }
 
     .pick-hour-container {
-        margin-top: 15px;
-        height: 150px;
-        border: 1px solid red;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+        display: flex;
+
+        .btn-schedule {
+            padding: 5px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border: 1px solid gray;
+
+            &:hover {
+                background-color: yellow;
+                color: red;
+            }
+        }
+    }
+
+    .btn-save-schedule {
+        margin-top: 20px;
     }
 }
