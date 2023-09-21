@@ -21,6 +21,11 @@
             font-weight: 600;
             border: 1px solid gray;
 
+            &.active {
+                background-color: yellow;
+                color: red;
+            }
+
             &:hover {
                 background-color: yellow;
                 color: red;
@@ -30,5 +35,7 @@
 
     .btn-save-schedule {
         margin-top: 20px;
+
+        
     }
 }

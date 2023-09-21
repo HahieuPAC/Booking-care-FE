@@ -70,14 +70,14 @@
     },
 
     "homepage": {
-        "outstanding-doctor": "Bac si noi bat tuan qua",
-        "more-info": "Them thong tin"
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "more-info": "Thêm thông tin"
     },
 
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
-        "choose-doctor": "Chon bac si",
-        "choose-date": "Chon ngay",
-        "save": "Luu thong tin"
+        "choose-doctor": "Chọn bác sĩ",
+        "choose-date": "Chọn ngày",
+        "save": "Lưu thông tin"
     }
 }
