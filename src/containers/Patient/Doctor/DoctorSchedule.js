@@ -12,42 +12,65 @@ class DoctorSchedule extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            allDays : []
+            allDays : [moment(new Date()).format('dddd - DD/MM')]
         }
     }
+
 
     async componentDidMount() {
-        let {lang} = this.props;
-
+        let language = this.props.lang;
         console.log(moment(new Date()).format('dddd - DD/MM'));
         console.log(moment(new Date()).locale('en').format('ddd - DD/MM'));
+        this.setArrDays(language);
+    }
 
-        let arrDate = []
+    setArrDays = (language) => {
+        let arrDays = []
         for (let i = 0; i < 7; i++) {
             let object = {};
-            object.label = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
+            if (language === LANGUAGES.VI) {
+                object.label = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
+            }
+            else {
+                object.label = moment(new Date()).add(i, 'days').locale('en').format('dddd - DD/MM');
+            }
             object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
 
-            arrDate.push(object);
+            arrDays.push(object);
+        }
+
+        this.setState({
+            allDays: arrDays
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if (prevProps.lang !== this.props.lang) {
+            this.setArrDays(this.props.lang)
         }
     }
 
-    componentDidUpdate() {
-
-    }
+    
 
     render() {
+        let {allDays} = this.state;
+        // let language = this.props.lang;
 
         return (    
-            <div className='doctor-schedule-container'>
+            <div className='doctor-schedule-container'> 
                 <div className='all-schedule'>
                     <select className=''>
-                        <option> 2 </option>
-                        <option> 2 </option>
-                        <option> 2 </option>
-                        <option> 2 </option>
-                        <option> 2 </option>
-                        <option> 2 </option>
+                        {allDays && allDays.length > 0 &&
+                        allDays.map((item, index) => {
+                            return (
+                                <option 
+                                    value={item.value} 
+                                    key={index}
+                                >
+                                        {item.label}
+                                </option>
+                            )
+                        })}
                     </select>
                 </div>
                 <div className='all-available-time'>
