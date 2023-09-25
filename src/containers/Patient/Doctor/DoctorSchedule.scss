@@ -1,0 +1,37 @@
+.doctor-schedule-container {
+
+    border: 1px solid red;
+    .all-schedule {
+
+    }
+
+    .all-available-time {
+
+        .text-calender {
+            color: #333;
+            margin: 10px 0;
+
+
+            i {
+                
+            }
+
+            span {
+                text-transform: uppercase;
+                margin-left: 5px;
+            }
+        }
+
+        .time-content {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            button {
+                padding: 5px 10px;
+                border: none;
+                outline: none;
+                background-color: gray;
+            }
+        }
+    }
+}
