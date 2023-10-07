@@ -71,5 +71,11 @@
         "choose-doctor": "choose doctor",
         "choose-date": "choose date",
         "save": "Save Information"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "Doctor don'e have any schedule"
+        }
     }
 }
