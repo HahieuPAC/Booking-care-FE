@@ -50,7 +50,7 @@
         },
 
         "doctor": {
-            "manage-schedule": "Quan ly ke hoach kham benh"
+            "manage-schedule": "Quản lý kế hoạch khám bệnh"
         }
     },
     "manage-user": {
@@ -84,17 +84,23 @@
     "patient": {
         "detail-doctor": {
             "schedule": "Lịch khám",
-            "no-schedule": "bac sy khong co lich hen nao hom nay"
+            "no-schedule": "Bác sỹ không có lịch khám hôm nay"
         }
     },
 
     "admin": {
         "manage-doctor": {
-            "title": "Them thong tin bac si",
-            "select-doctor": "Chon bac si",
+            "title": "Thêm thông tin bác sỹ",
+            "select-doctor": "Chọn bác sỹ",
             "intro-doctor": "Thông tin giới thiệu",
             "add": "thêm mới",
-            "save": "Lưu thông tin"
+            "save": "Lưu thông tin",
+            "price": "Giá khám bệnh",
+            "payment": "Phương thức thanh toán",
+            "province": "Tỉnh thành",
+            "nameClinic": "Tên phòng khám",
+            "addressClinic": "Địa chỉ phòng khám",
+            "note": "Ghi chú"
         }
     }
 }
