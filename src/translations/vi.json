@@ -86,5 +86,15 @@
             "schedule": "Lịch khám",
             "no-schedule": "bac sy khong co lich hen nao hom nay"
         }
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "Them thong tin bac si",
+            "select-doctor": "Chon bac si",
+            "intro-doctor": "Thông tin giới thiệu",
+            "add": "thêm mới",
+            "save": "Lưu thông tin"
+        }
     }
 }

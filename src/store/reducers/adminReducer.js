@@ -17,6 +17,8 @@ const initialState = {
     users: [],
     topDoctor: [],
     allDoctors: [],
+
+    allRequireDoctorInfo:[]
     
 }
 
@@ -111,6 +113,20 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_SUCCESS: 
+        state.allRequireDoctorInfo = action.data;
+        return {
+            ...state
+        }
+
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_FAILED: 
+        state.allRequireDoctorInfo = []; 
+        return {
+            ...state
+        }
+
+            
     
         default:
                 return state;

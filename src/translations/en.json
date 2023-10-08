@@ -77,5 +77,15 @@
             "schedule": "Schedule",
             "no-schedule": "Doctor don'e have any schedule"
         }
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "Create doctor's information",
+            "select-doctor": "Select a doctor",
+            "intro-doctor": "Introduction",
+            "add": "Add new",
+            "save": "Save information"
+        }
     }
 }
