@@ -107,7 +107,7 @@ class ManageDoctor extends Component {
                     result.push(object);
                 })
             }
-            if (type === 'PRICE' || type === 'PAYMENT' || type === "PROVINCE") {
+            if (type === 'PRICE') {
                 inputData.map((item, index) => {
                     let object = {};
                     let labelVi = `${item.valueVi}`;
@@ -148,7 +148,7 @@ class ManageDoctor extends Component {
             action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
 
             selectedPrice: this.state.selectedPrice.value,
-            selectedPayment: this.state.selectedPrice.value,
+            selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
             nameClinic: this.state.nameClinic,
             addressClinic: this.state.addressClinic,
