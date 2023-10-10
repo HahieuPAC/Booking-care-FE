@@ -12,7 +12,10 @@ class DoctorExtraInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowDetail: true,
+            isShowDetail: false,
+            extraInfo: {
+
+            }
         }
     }
 
@@ -26,8 +29,12 @@ class DoctorExtraInfo extends Component {
         }
 
         if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-            let data = await userService.getExtraInfoDoctorById(this.props.doctorIdFromParent);
-            console.log(">>> check getdata from doctorIdFromParent: ", data)
+            let res = await userService.getExtraInfoDoctorById(this.props.doctorIdFromParent);
+            if (res && res.errCode ===0) {
+                this.setState({
+                    extraInfo: res.data
+                })
+            }
         }
     }
 
@@ -37,10 +44,11 @@ class DoctorExtraInfo extends Component {
         })
     }
 
-    render() {;
-        console.log(">>> check prop: ", this.props.doctorIdFromParent)
+    render() {
         let language = this.props.lang;
-        let {isShowDetail} = this.state;
+        let {isShowDetail, extraInfo} = this.state;
+        console.log(extraInfo);
+
 
         return (    
             <div className='doctor-extra-info-container'>
@@ -49,10 +57,10 @@ class DoctorExtraInfo extends Component {
                         ĐỊA CHỈ KHÁM
                     </div>
                     <div className='name-clinic'>
-                        Phòng khám Chuyên khoa Da Liễu
+                        {extraInfo && extraInfo.nameClinic ? extraInfo.nameClinic :<span></span>}
                     </div>
                     <div className='detail-address'>
-                        207 Phố Huế - Hai Bà Trưng - Hà Nội
+                    {extraInfo && extraInfo.addressClinic ? extraInfo.addressClinic :<span></span>}
                     </div>
                 </div>
                 <div className='content-down'>
@@ -61,12 +69,13 @@ class DoctorExtraInfo extends Component {
                             <div className='title-price'>GIÁ KHÁM:</div>
                             <div className='detail-info'>
                                 <div className='price'>
-                                    <span className='left'>Gia kham</span>
-                                    <span className='right'>250.000</span>
+                                    <span className='left'>Giá khám: </span>
+                                    <span className='right'> {extraInfo && extraInfo.priceTypeData ? extraInfo.priceTypeData.valueVi :<span></span>
+                            } </span>
                                 </div>
 
                                 <div className='note'>
-                                    Phòng khám hiện không áp dụng bảo hiểm bảo lạnh trực tiếp và chưa có xuất hóa đơn tài chính (hóa đơn đỏ)
+                                {extraInfo && extraInfo.note ? extraInfo.note :<span></span>}
                                 </div>
                             </div>
                             <div className='payment'>Nguoi benh co the thanh toan qua tien mat hoc the ngan hang</div>
@@ -78,7 +87,9 @@ class DoctorExtraInfo extends Component {
                         </>
                     ) : (
                         <div className='show-price'>
-                            GIÁ KHÁM: 250.000. 
+                            Giá khám: 
+                            {extraInfo && extraInfo.priceTypeData ? extraInfo.priceTypeData.valueVi :<span></span>
+                            }    
                             <span onClick={() => this.showHideDetailInfoDoctor(true)}>
                                 Xem chi tiet
                             </span>

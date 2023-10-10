@@ -40,7 +40,7 @@ class DoctorSchedule extends Component {
             if (language === LANGUAGES.VI) {
                 if (i === 0) {
                     let ddMM =  moment(new Date()).format('DD/MM');
-                    let today = `Hom nay - ${ddMM}`;
+                    let today = `Hôm nay - ${ddMM}`;
                     object.label = today;
                 }
                 else {

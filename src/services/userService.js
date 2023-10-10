@@ -53,7 +53,7 @@ const getScheduleByDate  = (doctorId, date) => {
 }
 
 const getExtraInfoDoctorById  = (doctorId) => {
-    return axios.get(`//api/get-extra-info-doctor-by-id?doctorId=${doctorId}`);
+    return axios.get(`/api/get-extra-info-doctor-by-id?doctorId=${doctorId}`);
 }
 
 
