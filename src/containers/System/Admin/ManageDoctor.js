@@ -35,8 +35,6 @@ class ManageDoctor extends Component {
             contentHTML: "",
             selectedOption: "",
             description: "",
-            nameClinic: "",
-            addressClinic: "",
             note: "",
             listDoctors: [],
             hasOldData: false,
@@ -165,14 +163,52 @@ class ManageDoctor extends Component {
 
     handleChangeSelect = async (selectedOption) => {
         this.setState({ selectedOption });
+        let {listPayment, listPrice, listProvince} = this.state;
         let response = await userService.getDetailInfoDoctor(selectedOption.value)
         if (response && response.errCode === 0 && response.data && response.data.Markdown) {
             let markdown = response.data.Markdown;
+            let addressClinic = '';
+            let nameClinic = '';
+            let priceId = '';
+            let paymentId = '';
+            let provinceId = '';
+            let note = '';
+            let selectedPayment = '', selectedPrice = '', selectedProvince = ''; 
+
+            if(response.data.doctor_info) {
+                addressClinic = response.data.doctor_info.addressClinic;
+                nameClinic = response.data.doctor_info.nameClinic;
+                note = response.data.doctor_info.note;
+                paymentId = response.data.doctor_info.paymentId;
+                priceId = response.data.doctor_info.priceId;
+                provinceId = response.data.doctor_info.provinceId;
+                selectedPayment = listPayment.find(item => {
+                    if (item && item.value === paymentId) 
+                    return item 
+                });
+                
+                selectedPrice = listPrice.find(item => {
+                    if (item && item.value === priceId) 
+                    return item
+                });
+
+                selectedProvince = listProvince.find(item => {
+                    if (item && item.value === provinceId) 
+                    return item
+                });
+                console.log(">>> check find array: ", selectedPayment, selectedPrice, selectedProvince);
+            }
             this.setState({
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
                 hasOldData: true,
+                note: note,
+                nameClinic: nameClinic,
+                addressClinic: addressClinic,
+                selectedPayment : selectedPayment,
+                selectedPrice : selectedPrice,
+                selectedProvince: selectedProvince
             })
         }
         else {
@@ -180,10 +216,12 @@ class ManageDoctor extends Component {
                 contentHTML: "",
                 contentMarkdown: "",
                 description: "",
-                hasOldData: false
+                hasOldData: false,
+                note: '',
+                nameClinic: '',
+                addressClinic: '',
             })
         }
-        console.log(">>> check State: ", this.state);
     };
 
     handleChangeSelectDoctorInfo = async (selectedOption, name) => {

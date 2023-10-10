@@ -49,9 +49,11 @@ const bulkCreateSchedule = (data) => {
 }
 
 const getScheduleByDate  = (doctorId, date) => {
-    // let momentDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
-    // console("moment date: ", momentDate)
     return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
+}
+
+const getExtraInfoDoctorById  = (doctorId) => {
+    return axios.get(`//api/get-extra-info-doctor-by-id?doctorId=${doctorId}`);
 }
 
 
@@ -67,4 +69,5 @@ export default { handleLoginApi,
     saveDetailDoctorService,
     getDetailInfoDoctor,
     bulkCreateSchedule,
-    getScheduleByDate}
+    getScheduleByDate,
+    getExtraInfoDoctorById}
