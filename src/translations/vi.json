@@ -85,7 +85,15 @@
         "detail-doctor": {
             "schedule": "Lịch khám",
             "no-schedule": "Bác sỹ không có lịch khám hôm nay"
+        },
+        "extra-info-doctor": {
+            "address-clinic": "Dia chi kham",
+            "price": "Gia kham",
+            "detail": "Xem chi tiet",
+            "hide-detail": "An bang gia",
+            "payment": "Nguoi benh co the thanh toan qua"
         }
+        
     },
 
     "admin": {

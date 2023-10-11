@@ -24,9 +24,12 @@
     .content-down {
         .show-price {
             
-            span{
+            .view-detail {
                 cursor: pointer;
                 color: rgb(56, 165, 216);
+            }
+            .currency {
+                margin: 0 5px;
             }
         }
 
@@ -67,6 +70,8 @@
                 cursor: pointer;
                 color: rgb(56, 165, 216);
             }
+
+            
         }
     }
 }
