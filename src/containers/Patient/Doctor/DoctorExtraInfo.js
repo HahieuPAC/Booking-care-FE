@@ -85,9 +85,11 @@ class DoctorExtraInfo extends Component {
                                 {extraInfo && extraInfo.note ? extraInfo.note : ''}
                                 </div>
                             </div>
-                            <div className='payment'><FormattedMessage id="patient.extra-info-doctor.payment" />:
-                                {extraInfo && extraInfo.paymentTypeData ? extraInfo.paymentTypeData.valueVi : ''
+                            <div className='payment'><FormattedMessage id="patient.extra-info-doctor.payment" />
+                                {extraInfo && extraInfo.paymentTypeData && language === LANGUAGES.VI && extraInfo.paymentTypeData.valueVi
                                 }     
+                                {extraInfo && extraInfo.paymentTypeData && language === LANGUAGES.EN && extraInfo.paymentTypeData.valueEn
+                                } 
                             
                             </div>
                             <div className='hide-price'>

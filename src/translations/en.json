@@ -82,7 +82,7 @@
             "price": "Price",
             "detail": "View more",
             "hide-detail": "Hide detail",
-            "payment": "Payment"
+            "payment": "Payment: "
         }
     },
 
