@@ -87,11 +87,11 @@
             "no-schedule": "Bác sỹ không có lịch khám hôm nay"
         },
         "extra-info-doctor": {
-            "address-clinic": "Dia chi kham",
-            "price": "Gia kham",
-            "detail": "Xem chi tiet",
-            "hide-detail": "An bang gia",
-            "payment": "Nguoi benh co the thanh toan qua: "
+            "address-clinic": "Địa chỉ khám",
+            "price": "Giá khám: ",
+            "detail": "Xem chi tiết",
+            "hide-detail": "Ẩn bảng giá",
+            "payment": "Phương thức thanh toán: "
         }
         
     },

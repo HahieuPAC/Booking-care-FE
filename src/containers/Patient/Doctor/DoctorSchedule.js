@@ -15,7 +15,9 @@ class DoctorSchedule extends Component {
         super(props);
         this.state = {
             allDays : [],
-            allAvailableTime: []
+            allAvailableTime: [],
+            isOpenModalBooking: false,
+            dataScheduleTimeModal: {}
         }
     }
 
@@ -98,9 +100,20 @@ class DoctorSchedule extends Component {
         }
     }
 
+    handleClickScheduleTime = (time) => {
+        this.setState({
+            isOpenModalBooking: true,
+            dataScheduleTimeModal: time})
+        console.log(">> check time: ", time);
+    }
+
+    closeBookingModal = () => {
+        this.setState({
+            isOpenModalBooking: false})
+    }
 
     render() {
-        let {allDays, allAvailableTime} = this.state;
+        let {allDays, allAvailableTime, isOpenModalBooking, dataScheduleTimeModal} = this.state;
         let language = this.props.lang;
 
         return (    
@@ -136,7 +149,11 @@ class DoctorSchedule extends Component {
                                     let timeDisplay = language === LANGUAGES.VI ? 
                                     item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                     return (
-                                        <button key={index}>{timeDisplay}</button>
+                                        <button 
+                                            key={index}
+                                            onClick={()=> this.handleClickScheduleTime(item)}
+                                            >{timeDisplay}
+                                        </button>
                                     )
                                 })  
                             : <div>Bac si khong co lich hen trong thoi gian nay</div>
@@ -145,6 +162,9 @@ class DoctorSchedule extends Component {
                     </div>
                 </div>
                 <BookingModal
+                isOpenModalBooking = {isOpenModalBooking}
+                closeBookingModal={this.closeBookingModal}
+                dataTime= {dataScheduleTimeModal}
                 
                 />
             </>

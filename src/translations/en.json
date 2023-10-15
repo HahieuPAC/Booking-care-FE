@@ -79,7 +79,7 @@
         },
         "extra-info-doctor": {
             "address-clinic": "Address clinic",
-            "price": "Price",
+            "price": "Price: ",
             "detail": "View more",
             "hide-detail": "Hide detail",
             "payment": "Payment: "
