@@ -1,6 +1,6 @@
 .Booking-modal-container {
     .modal-content {
-        height: 94%;
+        height: 80%;
         position: absolute;
         top: 10%;
         .booking-modal-content {
@@ -31,7 +31,7 @@
             .booking-modal-body {
                 height: 100%;
                 padding: 15px;
-                // overflow: scroll;
+                overflow: scroll;
             }
     
             .booking-modal-footer {
@@ -63,6 +63,4 @@
             }
         }
     }
-
-   
 }
