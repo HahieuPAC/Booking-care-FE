@@ -5,6 +5,10 @@ import "./BookingModal.scss";
 import { Modal, ModalHeader } from 'reactstrap';
 import ProfileDoctor from '../ProfileDoctor';
 import _ from 'lodash';
+import DatePicker from '../../../../components/Input/DatePicker';
+import * as actions from '../../../../store/actions';
+import { LANGUAGES } from '../../../../utils';
+import Select from 'react-select';
 
 class BookingModal extends Component {
 
@@ -16,18 +20,42 @@ class BookingModal extends Component {
             address: '',
             reason: '',
             birthday: '',
-            gender: '',
-            doctorId: ''
+            selectedGender: '',
+            doctorId: '',
+            genders: '',
         }
     }
 
     async componentDidMount() {
-        
+        this.props.getGenders();
+    }
+
+    buildDataGender = (data) => {
+        let result = [];
+        let language = this.props.lang;
+
+        if (data && data.length > 0) {
+            data.map(item => {
+                let obj = {};
+                obj.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn;
+                Object.value = item.keyMap;
+                result.push(obj);
+            })
+        }
+        return result;
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot){
         if (this.props.lang !== prevProps.lang) {
-            
+            this.setState({
+                genders: this.buildDataGender(this.props.genders)
+            })
+        }
+
+        if (this.props.genders !== prevProps.genders) {
+            this.setState({
+                genders: this.buildDataGender(this.props.genders)
+            })
         }
     }
 
@@ -41,22 +69,25 @@ class BookingModal extends Component {
         let valueInput = event.target.value;
         let stateCopy = {...this.state};
         stateCopy[id] = valueInput;
+        this.setState({
+            ...stateCopy
+        })
+    }
+
+    handleOnChargeDatePicker = (date) => {
+        this.setState({
+            birthday: date[0]
+        })
+    }
+
+    handleChangeSelect = () => {
     }
 
     render() {
         // toggle={ };
         let {isOpenModalBooking, closeBookingModal, dataTime} = this.props;
         let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : "";
-        console.log(">>> check data props from modal: ", this.props)
-        console.log(">>> check doctorID: ", doctorId)
-
-        // fullName: '',
-        // phoneNumber: '',
-        // address: '',
-        // reason: '',
-        // birthday: '',
-        // gender: '',
-        // doctorId: ''
+        console.log(">>> check state genders: ", this.state);
         return (    
             <Modal 
                 centered
@@ -139,19 +170,21 @@ class BookingModal extends Component {
                                 <label>
                                     Giới tính
                                 </label>
-                                <input className='form-control'
-                                value={this.state.gender}
-                                onChange={(event)=> this.handleOnchangeInput(event, 'gender')}
+                                <select
+                                value={this.state.selectedGender}
+                                onChange={this.handleChangeSelect}
+                                options={this.state.gender}
                                 />
                             </div>
                             <div className='col-6 form-group'>
                                 <label>
-                                    Ngay sinh
+                                    Ngày sinh
                                 </label>
-                                <input className='form-control'
-                                value={this.state.birthday}
-                                onChange={(event)=> this.handleOnchangeInput(event, 'birthday')}
-                                />
+                                <DatePicker
+                                className="form-control"
+                                onChange = {this.handleOnChargeDatePicker}
+                                value = {this.state.birthday}
+                            />
                             </div>
                         </div>
                     </div>
@@ -171,12 +204,14 @@ class BookingModal extends Component {
 const mapStateToProps = state => {
     return {
         lang: state.app.language,
+        genders: state.admin.genders,
 
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getGenders: () => dispatch(actions.fetchGenderStart()),
     };
 };
 
