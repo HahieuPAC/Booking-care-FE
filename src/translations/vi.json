@@ -92,6 +92,20 @@
             "detail": "Xem chi tiết",
             "hide-detail": "Ẩn bảng giá",
             "payment": "Phương thức thanh toán: "
+        },
+
+        "booking-modal": {
+            "title": "Thong tin dat lich kham benh",
+            "fullName": "Ho va ten",
+            "phone-number": "So dien thoai",
+            "email": "Dia chi Email",
+            "address": "Dia chi lien he",
+            "reason": "Ly do kham",
+            "schedule-for": "Dat lich cho ai",
+            "gender": "Gioi tinh",
+            "birthday": "Ngay sinh",
+            "confirm": "Xac nhan",
+            "cancel": "Huy dat lich"
         }
         
     },

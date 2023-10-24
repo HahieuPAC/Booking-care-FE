@@ -83,6 +83,19 @@
             "detail": "View more",
             "hide-detail": "Hide detail",
             "payment": "Payment: "
+        },
+        "booking-modal": {
+            "title": "Information on scheduling medical examinations",
+            "fullName": "Full name",
+            "phone-number": "Phone number",
+            "email": "Email address",
+            "address": "Address",
+            "reason": "Reason",
+            "schedule-for": "schedule-for",
+            "gender": "Gender",
+            "birthday": "Birthday",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
         }
     },
 
