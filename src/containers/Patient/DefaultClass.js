@@ -8,8 +8,8 @@ class DefaultClass extends Component {
         super(props);
         this.state = {
 
-            }
         }
+    }
 
     async componentDidMount() {
         
