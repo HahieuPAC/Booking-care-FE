@@ -71,7 +71,8 @@
 
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
-        "more-info": "Thêm thông tin"
+        "more-info": "Thêm thông tin",
+        "specialty-popular": "Chuyên khoa phổ biến"
     },
 
     "manage-schedule": {
@@ -95,17 +96,17 @@
         },
 
         "booking-modal": {
-            "title": "Thong tin dat lich kham benh",
-            "fullName": "Ho va ten",
-            "phone-number": "So dien thoai",
-            "email": "Dia chi Email",
-            "address": "Dia chi lien he",
-            "reason": "Ly do kham",
-            "schedule-for": "Dat lich cho ai",
-            "gender": "Gioi tinh",
-            "birthday": "Ngay sinh",
-            "confirm": "Xac nhan",
-            "cancel": "Huy dat lich"
+            "title": "Thông tin đặt lịch khám bệnh",
+            "fullName": "Họ và tên",
+            "phone-number": "Số điện thoại",
+            "email": "Địa chỉ email",
+            "address": "Địa chỉ liên hệ",
+            "reason": "Lý do khám",
+            "schedule-for": "Đặt lịch cho ai",
+            "gender": "Giới tính",
+            "birthday": "Ngày sinh",
+            "confirm": "Xác nhận",
+            "cancel": "Hủy đặt lịch"
         }
         
     },

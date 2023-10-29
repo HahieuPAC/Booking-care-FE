@@ -5,6 +5,8 @@ import "./ManageSpecialty.scss";
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import CommonUtils from '../../../utils/CommonUtils';
+import userService from '../../../services/userService';
+import { ToastContainer, toast } from 'react-toastify';
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 
@@ -64,8 +66,21 @@ class ManageSpecialty extends Component {
         
     }
 
-    handleSaveNewSpecialty = () => {
-        console.log(">>> check state: ", this.state)
+    handleSaveNewSpecialty = async() => {
+        let res = await userService.createNewSpecialty(this.state)
+        if (res && res.errCode === 0) {
+            toast.success('Add new specialty succeed');
+            this.setState({
+                name: '',
+                imageBase64: '',
+                descriptionHTML: '',
+                descriptionMarkdown: '',
+            })
+        }
+        else {
+            toast.error('Add new specialty error')
+            console.log(">> check res add new specialty: ", res)
+        }
     }
 
     render() {
@@ -73,8 +88,6 @@ class ManageSpecialty extends Component {
             <div className='manage-specialty-container'>
                 <div className='manage-title'>Quan ly chuyen khoa</div>
                 <div className='add-new-specialty'>
-                    <button className=''>Add new</button>
-                
                     <div className='add-new-specialty row'>
                         <div className='col-6 form-group'>
                             <label>ten chuyen khoa</label>

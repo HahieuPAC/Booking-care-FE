@@ -43,12 +43,19 @@ class ManageDoctor extends Component {
             listPrice: [],
             listPayment: [],
             listProvince: [],
+            listClinic: [],
+            listSpecialty: [],
+
             selectedPrice: '',
             selectedPayment: '',
             selectedProvince: '',
+            selectedClinic: '',
+            selectedSpecialty: '',
             nameClinic: '',
             addressClinic: '',
-            note: ''
+            note: '',
+            clinicId: '',
+            specialtyId: '',
         }
     }
 
@@ -78,16 +85,16 @@ class ManageDoctor extends Component {
             })
         }
         if (prevProps.allRequireDoctorInfo !== this.props.allRequireDoctorInfo) { 
-            let {resPayment, resPrice, resProvince} = this.props.allRequireDoctorInfo;
+            let {resPayment, resPrice, resProvince, resSpecialty} = this.props.allRequireDoctorInfo;
             let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
             let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
             let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
-
-            console.log(" >>> check data {resPayment, resPrice, resProvince} : ", resPayment, resPrice, resProvince)
+            let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty, 'SPECIALTY');
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
+                listSpecialty: dataSelectSpecialty
             });
         }
     }
@@ -122,6 +129,14 @@ class ManageDoctor extends Component {
                     let labelEn = `${item.valueEn}`;
                     object.label = this.props.lang === LANGUAGES.VI ? labelVi : labelEn;
                     object.value = item.keyMap;
+                    result.push(object);
+                })
+            }
+            if (type === "SPECIALTY") {
+                inputData.map((item, index) => {
+                    let object = {};
+                    object.label = item.name;
+                    object.value = item.id;
                     result.push(object);
                 })
             }
@@ -243,8 +258,10 @@ class ManageDoctor extends Component {
     }
 
     render() {
-        let {hasOldData} = this.state;
+        let {hasOldData, listSpecialty} = this.state;
         console.log(">> check state manage doctor: ", this.state);
+        console.log(">> check props manage doctor: ", this.props.allRequireDoctorInfo);
+        
         return (
             <div className='manage-doctor-container'>
                 <div className='manage-doctor-title'>
@@ -333,11 +350,29 @@ class ManageDoctor extends Component {
                                 value={this.state.note}
                         />
                     </div>
+                </div> 
+                <div className='row'>
+                    <div className='col-4 form-group'>
+                        <label className=''>
+                            Chọn chuyên khoa
+                        </label>
+                        <Select
+                            // value={this.state.selectedOption}
+                            // onChange={this.handleChangeSelect}
+                            options={this.state.listSpecialty}
+                        />
+                    </div>
+                    <div className='col-4 form-group'>
+                        <label className=''>
+                            Chọn phòng khám
+                        </label>
+                        <input className='form-control'/>
+                    </div>
                 </div>
 
                 <div className='manage-doctor-editor'>
                     <MdEditor 
-                    style={{ height: '500px' }} 
+                    style={{ height: '300px' }} 
                     renderHTML={text => mdParser.render(text)} 
                     onChange={this.handleEditorChange}
                     value={this.state.contentMarkdown} 
